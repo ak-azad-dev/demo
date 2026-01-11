@@ -2,8 +2,8 @@
  * Validate User Form before submit
  */
 function validateForm() {
-    var name = document.getElementById("name").value.trim();
-    var email = document.getElementById("email").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
 
     if (name === "") {
         alert("Name is required");
@@ -40,6 +40,6 @@ function confirmDelete(url) {
  * Email format validation
  */
 function validateEmail(email) {
-    var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
 }

@@ -24,6 +24,11 @@ public class AuthController {
     @Autowired
     private PasswordEncoder encoder;
 
+    @GetMapping("")
+    public String defaultPage() {
+        return "login";
+    }
+
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -31,7 +36,7 @@ public class AuthController {
 
     @GetMapping("/signup")
     public String signup(Model model) {
-        model.addAttribute("customer", new User());
+        model.addAttribute("user", new User());
         return "signup";
     }
 
@@ -40,5 +45,10 @@ public class AuthController {
         user.setPassword(encoder.encode(user.getPassword()));
         repo.save(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 }

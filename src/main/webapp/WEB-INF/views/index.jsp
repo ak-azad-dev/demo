@@ -35,7 +35,7 @@
             color: #333;
         }
 
-        .home-container a {
+        .btnCustomer {
             display: inline-block;
             padding: 12px 25px;
             text-decoration: none;
@@ -46,8 +46,19 @@
             transition: background 0.3s;
         }
 
-        .home-container a:hover {
+        .btnCustomer:hover {
             background: #0056b3;
+        }
+
+        .btnEmployee{
+            display: inline-block;
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #fff;
+            background: orange;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
         }
 
     </style>
@@ -56,7 +67,8 @@
 
 <div class="home-container">
     <h2>Welcome to Spring Boot JSP App</h2>
-    <a href="${pageContext.request.contextPath}/customers">View Customers</a>
+    <a href="${pageContext.request.contextPath}/customers" class="btnCustomer">View Customers</a>
+    <a href="${pageContext.request.contextPath}/employees" class="btnEmployee">View Employees</a>
 </div>
 
 </body>

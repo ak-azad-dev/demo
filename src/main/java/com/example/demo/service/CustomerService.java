@@ -16,7 +16,7 @@ public class CustomerService {
 
 
     public List<Customer> findAll() {
-        return repository.findAllCustomer();
+        return repository.findAll();
     }
 
 
