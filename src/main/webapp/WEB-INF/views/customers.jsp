@@ -1,20 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<<<<<<< HEAD
 <jsp:include page="/WEB-INF/common/scripts_loader.jsp" />
 <html>
 <head>
     <title>Customer Management</title>
-=======
-
 <html>
 <head>
     <title>Customer Management</title>
-
-    ```
-    <script src="${pageContext.request.contextPath}/js/app.js"></script>
-
->>>>>>> a6788cebf6308266e4df6f3117996c395ff0ec24
     <style>
         *{
             margin:0;
@@ -174,8 +166,6 @@
             }
         }
     </style>
-    ```
-
 </head>
 <body>
 
@@ -187,8 +177,6 @@
     </a>
 </div>
 
-<!-- Logout Button -->
-
 <div class="logout-container">
     <a href="${pageContext.request.contextPath}/logout" class="btnLogout">
         🚪 Logout
@@ -196,8 +184,6 @@
 </div>
 
 <div class="container">
-
-    ```
     <h2>Customer List</h2>
 
     <a href="${pageContext.request.contextPath}/customers/new"
@@ -212,34 +198,10 @@
             <th>Email</th>
             <th>Actions</th>
         </tr>
-<<<<<<< HEAD
         </thead>
         <tbody>
         </tbody>
-=======
-
-        <c:forEach var="c" items="${customers}">
-            <tr>
-                <td>${c.id}</td>
-                <td>${c.name}</td>
-                <td>${c.email}</td>
-                <td>${c.mobile}</td>
-                <td class="action-links">
-                    <a href="${pageContext.request.contextPath}/customers/edit/${c.id}">
-                        Edit
-                    </a>
-
-                    <a href="javascript:void(0);"
-                       onclick="confirmDelete('${pageContext.request.contextPath}/customers/delete/${c.id}')">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-        </c:forEach>
-
->>>>>>> a6788cebf6308266e4df6f3117996c395ff0ec24
     </table>
-    ```
 
 </div>
 </body>
