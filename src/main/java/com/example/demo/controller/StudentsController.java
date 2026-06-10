@@ -32,8 +32,7 @@ public class StudentsController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Students employee) {
-        Students students = null;
+    public String save(@ModelAttribute Students students) {
         studentsService.save(students);
         return "redirect:/students";
     }
