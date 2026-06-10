@@ -1,14 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: AzadDevPC
-  Date: 1/8/2026
-  Time: 10:00 AM
+  User: User
+  Date: 6/8/2026
+  Time: 4:25 PM
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
+    <title>Subscribe</title>
     <style>
         *{
             margin:0;
@@ -25,24 +26,24 @@
             background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
         }
 
-        .login-container{
+        .subscribe-container{
             width:400px;
-            background:#ffffff;
+            background:#fff;
             padding:40px;
             border-radius:20px;
             box-shadow:0 15px 35px rgba(0,0,0,0.15);
             animation:fadeIn 0.5s ease;
         }
 
-        .login-container h2{
+        .subscribe-container h2{
             text-align:center;
-            margin-bottom:30px;
             color:#2d3748;
+            margin-bottom:30px;
             font-size:30px;
             font-weight:700;
         }
 
-        .login-container label{
+        .subscribe-container label{
             display:block;
             margin-bottom:8px;
             color:#4a5568;
@@ -50,61 +51,61 @@
             font-weight:600;
         }
 
-        .login-container input{
+        .subscribe-container input{
             width:100%;
             padding:14px 16px;
-            margin-bottom:20px;
             border:2px solid #e2e8f0;
             border-radius:12px;
+            margin-bottom:20px;
             font-size:15px;
-            background:#f8fafc;
             transition:all 0.3s ease;
+            background:#f8fafc;
         }
 
-        .login-container input:focus{
+        .subscribe-container input:focus{
             outline:none;
             border-color:#667eea;
-            background:#ffffff;
+            background:#fff;
             box-shadow:0 0 0 4px rgba(102,126,234,0.15);
         }
 
-        .login-container button{
+        .subscribe-container button{
             width:100%;
             padding:14px;
             border:none;
             border-radius:12px;
             background:linear-gradient(135deg,#667eea,#764ba2);
-            color:#ffffff;
+            color:white;
             font-size:16px;
             font-weight:600;
             cursor:pointer;
             transition:all 0.3s ease;
         }
 
-        .login-container button:hover{
+        .subscribe-container button:hover{
             transform:translateY(-2px);
             box-shadow:0 10px 20px rgba(102,126,234,0.3);
         }
 
-        .login-container button:active{
+        .subscribe-container button:active{
             transform:translateY(0);
         }
 
-        .signup-link{
+        .login-link{
             text-align:center;
             margin-top:20px;
             color:#718096;
             font-size:14px;
         }
 
-        .signup-link a{
+        .login-link a{
             color:#667eea;
             font-weight:600;
             text-decoration:none;
             transition:0.3s;
         }
 
-        .signup-link a:hover{
+        .login-link a:hover{
             color:#764ba2;
             text-decoration:underline;
         }
@@ -121,7 +122,7 @@
         }
 
         @media(max-width:480px){
-            .login-container{
+            .subscribe-container{
                 width:90%;
                 padding:30px 25px;
             }
@@ -131,24 +132,23 @@
 
 <body>
 
-<div class="login-container">
-    <h2>Login</h2>
+<div class="subscribe-container">
+    <h2>Subscribe</h2>
 
-    <form method="post" action="${pageContext.request.contextPath}/login">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="Enter username" required/>
+    <form method="post" action="${pageContext.request.contextPath}/subscribe/save">
+        <label for="Name">Name</label>
+        <input type="text" id="Name" name="Name" placeholder="Enter Your username" required />
 
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter password" required/>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter Your Email" required />
 
-        <button type="submit">Login</button>
+
+        <button type="submit">Submit</button>
     </form>
 
-    <div class="signup-link">
-        Don't have an account?
-        <a href="${pageContext.request.contextPath}/signup">Signup</a>
-        OR
-       <a href="${pageContext.request.contextPath}/subscribe">Subscribe</a>
+    <div class="login-link">
+        Already have an account?
+        <a href="${pageContext.request.contextPath}/login">Login</a>
     </div>
 </div>
 

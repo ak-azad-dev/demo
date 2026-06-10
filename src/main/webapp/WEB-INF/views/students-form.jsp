@@ -1,9 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
-    <title>Customer Form</title>
+    <title>Student Form</title>
 
     ```
     <script src="${pageContext.request.contextPath}/js/app.js"></script>
@@ -55,18 +54,13 @@
             background:linear-gradient(135deg,#007bff,#0056d2);
         }
 
-        .btnBack:hover{
-            transform:translateY(-2px);
-            box-shadow:0 8px 16px rgba(0,123,255,0.3);
-        }
-
         .btnLogout{
             background:linear-gradient(135deg,#e53e3e,#c53030);
         }
 
+        .btnBack:hover,
         .btnLogout:hover{
             transform:translateY(-2px);
-            box-shadow:0 8px 16px rgba(229,62,62,0.3);
         }
 
         .form-container{
@@ -75,7 +69,6 @@
             padding:45px;
             border-radius:24px;
             box-shadow:0 20px 40px rgba(0,0,0,0.15);
-            animation:fadeIn 0.5s ease;
         }
 
         .form-container h2{
@@ -83,33 +76,27 @@
             margin-bottom:30px;
             color:#2d3748;
             font-size:30px;
-            font-weight:700;
         }
 
         label{
             display:block;
             margin-bottom:8px;
             color:#4a5568;
-            font-size:14px;
             font-weight:600;
         }
 
         input{
             width:100%;
-            padding:14px 16px;
+            padding:14px;
             margin-bottom:18px;
             border:2px solid #e2e8f0;
             border-radius:12px;
             background:#f8fafc;
-            font-size:15px;
-            transition:all 0.3s ease;
         }
 
         input:focus{
             outline:none;
             border-color:#667eea;
-            background:#fff;
-            box-shadow:0 0 0 4px rgba(102,126,234,0.15);
         }
 
         button{
@@ -122,63 +109,22 @@
             font-size:16px;
             font-weight:600;
             cursor:pointer;
-            transition:all 0.3s ease;
-        }
-
-        button:hover{
-            transform:translateY(-2px);
-            box-shadow:0 10px 20px rgba(0,123,255,0.3);
-        }
-
-        button:active{
-            transform:translateY(0);
         }
 
         .cancel-link{
             display:block;
             text-align:center;
-            margin-top:20px;
-            color:#e53e3e;
-            font-weight:600;
+            margin-top:15px;
             text-decoration:none;
-            font-size:14px;
-            transition:0.3s;
+            color:#dc3545;
+            font-weight:600;
         }
 
         .cancel-link:hover{
-            color:#c53030;
             text-decoration:underline;
         }
 
-        @keyframes fadeIn{
-            from{
-                opacity:0;
-                transform:translateY(20px);
-            }
-            to{
-                opacity:1;
-                transform:translateY(0);
-            }
-        }
-
         @media(max-width:500px){
-
-            .back-container{
-                top:15px;
-                left:15px;
-            }
-
-            .logout-container{
-                top:15px;
-                right:15px;
-            }
-
-            .btnBack,
-            .btnLogout{
-                padding:10px 16px;
-                font-size:14px;
-            }
-
             .form-container{
                 width:95%;
                 padding:30px 25px;
@@ -191,16 +137,12 @@
 
 <body>
 
-<!-- Back Button -->
-
 <div class="back-container">
-    <a href="${pageContext.request.contextPath}/customers"
+    <a href="${pageContext.request.contextPath}/students"
        class="btnBack">
         ⬅ Back
     </a>
 </div>
-
-<!-- Logout Button -->
 
 <div class="logout-container">
     <a href="${pageContext.request.contextPath}/logout"
@@ -212,38 +154,45 @@
 <div class="form-container">
 
     ```
-    <h2>Customer Form</h2>
+    <h2>Student Form</h2>
 
-    <form action="${pageContext.request.contextPath}/customers/save"
+    <form action="${pageContext.request.contextPath}/students/save"
           method="post"
           onsubmit="return validateForm();">
 
-        <!-- Hidden ID for Edit -->
-        <input type="hidden" name="id" value="${customer.id}" />
+        <input type="hidden"
+               name="id"
+               value="${student.id}" />
 
         <label for="name">Name</label>
         <input type="text"
                name="name"
                id="name"
-               value="${customer.name}" />
+               value="${student.name}" />
 
-        <label for="email">Email</label>
-        <input type="email"
-               name="email"
-               id="email"
-               value="${customer.email}" />
+        <label for="rollnumber">Roll Number</label>
+        <input type="text"
+               name="rollnumber"
+               id="rollnumber"
+               value="${student.rollnumber}" />
 
-        <label for="mobile">Mobile</label>
+        <label for="course">Course</label>
+        <input type="text"
+               name="course"
+               id="course"
+               value="${student.course}" />
+
+        <label for="age">Age</label>
         <input type="number"
-               name="mobile"
-               id="mobile"
-               value="${customer.mobile}" />
+               name="age"
+               id="age"
+               value="${student.age}" />
 
         <button type="submit">💾 Save</button>
 
     </form>
 
-    <a href="${pageContext.request.contextPath}/customers"
+    <a href="${pageContext.request.contextPath}/students"
        class="cancel-link">
         Cancel
     </a>

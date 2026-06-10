@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.model.Customer;
 import com.example.demo.model.Employee;
+import com.example.demo.model.Students;
 import com.example.demo.repository.CustomerRepository;
 import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repository.StudentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,24 +18,24 @@ import java.util.List;
  **/
 
 @Service
-public class EmployeeService {
+public class StudentsService {
 
     @Autowired
-    private EmployeeRepository repository;
+    private StudentsRepository repository;
 
 
-    public List<Employee> findAll() {
+    public List<Students> findAll() {
         return repository.findAll();
     }
 
 
-    public Employee findById(Long id) {
+    public Students findById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
 
-    public void save(Employee employee) {
-        repository.save(employee);
+    public void save(Students students) {
+        repository.save(students);
     }
 
 
