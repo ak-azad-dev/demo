@@ -38,6 +38,8 @@ public class AuthController {
     public String signup(Model model) {
         model.addAttribute("user", new User());
         return "signup";
+
+
     }
 
     @PostMapping("/signup")

@@ -11,73 +11,122 @@
 <head>
     <title>Signup</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        .signup-container {
-            background: #ffffff;
-            padding: 30px 40px;
-            width: 350px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+            padding:20px;
         }
 
-        .signup-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
+        .signup-container{
+            width:420px;
+            background:#ffffff;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 15px 35px rgba(0,0,0,0.15);
+            animation:fadeIn 0.5s ease;
         }
 
-        .signup-container label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
+        .signup-container h2{
+            text-align:center;
+            margin-bottom:30px;
+            color:#2d3748;
+            font-size:30px;
+            font-weight:700;
         }
 
-        .signup-container input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
+        .signup-container label{
+            display:block;
+            margin-bottom:8px;
+            color:#4a5568;
+            font-size:14px;
+            font-weight:600;
         }
 
-        .signup-container button {
-            width: 100%;
-            padding: 10px;
-            background: #28a745;
-            border: none;
-            color: #ffffff;
-            font-size: 15px;
-            border-radius: 4px;
-            cursor: pointer;
+        .signup-container input{
+            width:100%;
+            padding:14px 16px;
+            margin-bottom:18px;
+            border:2px solid #e2e8f0;
+            border-radius:12px;
+            background:#f8fafc;
+            font-size:15px;
+            transition:all 0.3s ease;
         }
 
-        .signup-container button:hover {
-            background: #218838;
+        .signup-container input:focus{
+            outline:none;
+            border-color:#667eea;
+            background:#fff;
+            box-shadow:0 0 0 4px rgba(102,126,234,0.15);
         }
 
-        .login-link {
-            text-align: center;
-            margin-top: 15px;
+        .signup-container button{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background:linear-gradient(135deg,#28a745,#20c997);
+            color:#fff;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+            transition:all 0.3s ease;
         }
 
-        .login-link a {
-            text-decoration: none;
-            color: #007bff;
+        .signup-container button:hover{
+            transform:translateY(-2px);
+            box-shadow:0 10px 20px rgba(40,167,69,0.3);
         }
 
-        .login-link a:hover {
-            text-decoration: underline;
+        .signup-container button:active{
+            transform:translateY(0);
+        }
+
+        .login-link{
+            text-align:center;
+            margin-top:20px;
+            color:#718096;
+            font-size:14px;
+        }
+
+        .login-link a{
+            color:#667eea;
+            text-decoration:none;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .login-link a:hover{
+            color:#764ba2;
+            text-decoration:underline;
+        }
+
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(20px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        @media(max-width:480px){
+            .signup-container{
+                width:95%;
+                padding:30px 25px;
+            }
         }
     </style>
 </head>

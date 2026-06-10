@@ -1,122 +1,204 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hp
-  Date: 12/01/2026
-  Time: 09:27 pm
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
-    <title>Students form</title>
-    <script src ="${pageContext.request.contextPath}/js/app.js"></script>
+    <title>Student Form</title>
+
+    ```
+    <script src="${pageContext.request.contextPath}/js/app.js"></script>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+            padding:80px 20px 20px;
+        }
+
+        /* Top Buttons */
+        .back-container{
+            position:fixed;
+            top:20px;
+            left:20px;
+            z-index:1000;
+        }
+
+        .logout-container{
+            position:fixed;
+            top:20px;
+            right:20px;
+            z-index:1000;
+        }
+
+        .btnBack,
+        .btnLogout{
+            display:inline-block;
+            padding:12px 22px;
+            color:#fff;
+            text-decoration:none;
+            border-radius:10px;
+            font-weight:600;
+            transition:all 0.3s ease;
+        }
+
+        .btnBack{
+            background:linear-gradient(135deg,#007bff,#0056d2);
+        }
+
+        .btnLogout{
+            background:linear-gradient(135deg,#e53e3e,#c53030);
+        }
+
+        .btnBack:hover,
+        .btnLogout:hover{
+            transform:translateY(-2px);
+        }
+
+        .form-container{
+            width:450px;
+            background:#ffffff;
+            padding:45px;
+            border-radius:24px;
+            box-shadow:0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .form-container h2{
+            text-align:center;
+            margin-bottom:30px;
+            color:#2d3748;
+            font-size:30px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            color:#4a5568;
+            font-weight:600;
+        }
+
+        input{
+            width:100%;
+            padding:14px;
+            margin-bottom:18px;
+            border:2px solid #e2e8f0;
+            border-radius:12px;
+            background:#f8fafc;
+        }
+
+        input:focus{
+            outline:none;
+            border-color:#667eea;
+        }
+
+        button{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background:linear-gradient(135deg,#007bff,#0056d2);
+            color:#fff;
+            font-size:16px;
+            font-weight:600;
+            cursor:pointer;
+        }
+
+        .cancel-link{
+            display:block;
+            text-align:center;
+            margin-top:15px;
+            text-decoration:none;
+            color:#dc3545;
+            font-weight:600;
+        }
+
+        .cancel-link:hover{
+            text-decoration:underline;
+        }
+
+        @media(max-width:500px){
+            .form-container{
+                width:95%;
+                padding:30px 25px;
+            }
+        }
+    </style>
+    ```
+
 </head>
-<style>
-    <body>(
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    }
 
-    .form-container {
-        background: #fff;
-        padding: 30px 40px;
-        width: 400px;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    }
-
-    .form-container h2 {
-        text-align: center;
-        margin-bottom: 25px;
-        color: #333;
-    }
-
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-
-    input {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    button {
-        width: 100%;
-        padding: 10px;
-        background: #007bff;
-        border: none;
-        color: #fff;
-        font-size: 15px;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 5px;
-    }
-
-    button:hover {
-        background: #0056b3;
-    }
-
-    .cancel-link {
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-        text-decoration: none;
-        color: #dc3545;
-        font-weight: bold;
-    }
-
-    .cancel-link:hover {
-        text-decoration: underline;
-    }
-</style>
-</head>
 <body>
 
-<div class="form-container">
-    <h2>Employee Form</h2>
+<div class="back-container">
+    <a href="${pageContext.request.contextPath}/students"
+       class="btnBack">
+        ⬅ Back
+    </a>
+</div>
 
-    <form action="${pageContext.request.contextPath}/employees/save"
+<div class="logout-container">
+    <a href="${pageContext.request.contextPath}/logout"
+       class="btnLogout">
+        🚪 Logout
+    </a>
+</div>
+
+<div class="form-container">
+
+    ```
+    <h2>Student Form</h2>
+
+    <form action="${pageContext.request.contextPath}/students/save"
           method="post"
           onsubmit="return validateForm();">
 
-        <!-- Hidden ID for Edit -->
-        <input type="hidden" name="id" value="${employee.id}" />
+        <input type="hidden"
+               name="id"
+               value="${student.id}" />
 
-        <label for="Name">Name</label>
-        <input type="text" name="Name" id="Name" value="${Students.Name}" />
+        <label for="name">Name</label>
+        <input type="text"
+               name="name"
+               id="name"
+               value="${student.name}" />
 
-        <label for="rollnumber">Rollnumber</label>
-        <input type="text" name="Rollnumber" id="Rollnumber" value="${Students.Rollnumber}" />
+        <label for="rollnumber">Roll Number</label>
+        <input type="text"
+               name="rollnumber"
+               id="rollnumber"
+               value="${student.rollnumber}" />
 
-        <label for="organization">Organization</label>
-        <input type="text" name="organization" id="organization" value="${employee.organization}" />
+        <label for="course">Course</label>
+        <input type="text"
+               name="course"
+               id="course"
+               value="${student.course}" />
 
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="${employee.email}" />
+        <label for="age">Age</label>
+        <input type="number"
+               name="age"
+               id="age"
+               value="${student.age}" />
 
-        <label for="address">Address</label>
-        <input type="text" name="address" id="address" value="${employee.address}" />
+        <button type="submit">💾 Save</button>
 
-        <button type="submit">Save</button>
     </form>
 
-    <a href="${pageContext.request.contextPath}/stuents" class="cancel-link">Cancel</a>
+    <a href="${pageContext.request.contextPath}/students"
+       class="cancel-link">
+        Cancel
+    </a>
+    ```
+
 </div>
 
-)
 </body>
-
-</style>
 </html>
