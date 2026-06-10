@@ -7,10 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<jsp:include page="/WEB-INF/common/scripts_loader.jsp" />
 <html>
 <head>
     <title>Customer Management</title>
-    <script src="${pageContext.request.contextPath}/js/app.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,29 +90,18 @@
     <h2>Customer List</h2>
     <a href="${pageContext.request.contextPath}/customers/new" class="add-btn">Add Customer</a>
 
-    <table>
+    <table id="customerTable" class="table table-striped">
+        <thead>
         <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Mobile</th>
             <th>Actions</th>
         </tr>
-        <c:forEach var="c" items="${customers}">
-            <tr>
-                <td>${c.id}</td>
-                <td>${c.name}</td>
-                <td>${c.email}</td>
-                <td>${c.mobile}</td>
-                <td class="action-links">
-                    <a href="${pageContext.request.contextPath}/customers/edit/${c.id}">Edit</a>
-                    <a href="javascript:void(0);" onclick="confirmDelete('${pageContext.request.contextPath}/customers/delete/${c.id}')">Delete</a>
-                </td>
-            </tr>
-        </c:forEach>
+        </thead>
+        <tbody>
+        </tbody>
     </table>
 </div>
-
 </body>
 </html>
 

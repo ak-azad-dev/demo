@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.Mapper.CustomerMapper;
+import com.example.demo.dto.CustomerDTO;
 import com.example.demo.model.Customer;
 import com.example.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,25 +14,32 @@ public class CustomerService {
 
 
     @Autowired
-    private CustomerRepository repository;
+    private CustomerRepository customerRepository;
 
 
     public List<Customer> findAll() {
-        return repository.findAll();
+        return customerRepository.findAll();
     }
 
 
     public Customer findById(Long id) {
-        return repository.findById(id).orElse(null);
+        return customerRepository.findById(id).orElse(null);
     }
 
 
     public void save(Customer customer) {
-        repository.save(customer);
+        customerRepository.save(customer);
     }
 
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        customerRepository.deleteById(id);
+    }
+
+    public List<CustomerDTO> getCustomers(){
+        return customerRepository.getAllCustomer()
+                .stream()
+                .map(CustomerMapper::EntityToResponse)
+                .toList();
     }
 }
