@@ -6,6 +6,7 @@ import com.example.demo.model.Customer;
 import com.example.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,5 +42,14 @@ public class CustomerService {
                 .stream()
                 .map(CustomerMapper::EntityToResponse)
                 .toList();
+    }
+
+    public Customer getCustomerDetailsById(Long id){
+        return customerRepository.getCustomerDetailsById(id);
+    }
+
+    @Transactional
+    public void deleteCustomerByCustomerId(Long id){
+         customerRepository.deleteCustomerByCustomerId(id);
     }
 }

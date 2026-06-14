@@ -7,6 +7,7 @@ public class CustomerMapper {
 
     public static CustomerDTO EntityToResponse(Customer customer){
         CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setId(customer.getId());
         customerDTO.setName(customer.getName());
         customerDTO.setEmail(customer.getEmail());
         return customerDTO;

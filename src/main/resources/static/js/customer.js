@@ -43,17 +43,26 @@ const customer = (function () {
      */
     function _loadGridCallBack(res) {
         if (res) {
-            // Must match the 3 headers in your HTML table perfectly
             const customerTableColumnDefinition = [
-                { "data": "name" },  // 1st column: Maps to <th>Name</th>
-                { "data": "email" }, // 2nd column: Maps to <th>Email</th>
-                {                    // 3rd column: Maps to <th>Actions</th>
+                {
+                    "data": "id",
+                    "className": "customerId",
+                    "orderable": false
+                },
+                { "data": "name" },
+                { "data": "email" },
+                {
                     "data": null,
                     "orderable": false,
                     "render": function (data, type, row) {
+                        // FIX: Added data attributes to pass row data to the class click event
                         return `
                         <span class="action-links">
-                            <button class="btn btn-xs btn-info" onclick="alert('Viewing: ${row.name}')">VIEW</button>
+                            <button class="btn btn-info btn-view">VIEW</button>
+                        </span>
+                        
+                        <span class="action-links">
+                            <button class="btn btn-danger btn-delete">DELETE</button>
                         </span>
                     `;
                     }
@@ -62,28 +71,105 @@ const customer = (function () {
 
             const customerTable = $("#customerTable");
 
-            // Correct way to clear and re-initialize modern DataTables
             if ($.fn.DataTable.isDataTable('#customerTable')) {
                 customerTable.DataTable().destroy();
             }
 
-            // Initialize DataTables with your JSON array (res)
             customerTable.DataTable({
                 "searching": true,
                 "pageLength": 3,
-                "data": res, // This passes your JSON array directly
+                "data": res,
                 "columns": customerTableColumnDefinition
             });
         }
     }
 
+    /**
+     * View Details Function to trigger and populate Modal
+     */
+    function viewDetails() {
+        $("#customerTable").on("click", "tbody .btn-view", function () {
+            const customerId = $(this).closest('tr').find('.customerId').text();
+
+            const url = _baseURL() + 'details/' + customerId;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (res) {
+                    // Populate modal text fields
+                    $("#customerName").text(res.name);
+                    $("#customerEmail").text(res.email);
+                    $("#customerMobile").text(res.mobile);
+
+                    // Open the modal
+                    $("#customerModal").css("display", "flex");
+                },
+                error: function (xhr, status, error) {
+                    console.error("Failed to fetch customers:", error);
+                }
+            });
+        });
+    }
+
+
+    /**
+     * View Details Function to trigger and populate Modal
+     */
+    function deleteCustomer() {
+        $("#customerTable").on("click", "tbody .btn-delete", function () {
+            const customerId = $(this).closest('tr').find('.customerId').text();
+
+            const url = _baseURL() + 'delete/' + customerId;
+            alert("Do you want to delete this record?");
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                success: function (res) {
+                    // Populate modal text fields
+                    alert(res);
+                    getCustomers();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Failed to fetch customers:", error);
+                }
+            });
+        });
+    }
+
+    function closeModalOnClickClose() {
+        // Event listener to hide modal when clicking "X" or "Close" button
+        $(".close-modal, .btn-close-modal").on("click", function() {
+            $("#customerModal").css("display", "none");
+        });
+    }
+
+    function closeModalOnClickOutside() {
+        // FIX: Changed selector to $(window) to properly catch document-wide background clicks
+        $(window).on("click", function(event) {
+            if ($(event.target).is("#customerModal")) {
+                $("#customerModal").css("display", "none");
+            }
+        });
+    }
+
     return {
         _baseURL: _baseURL,
-        getCustomers: getCustomers
+        getCustomers: getCustomers,
+        viewDetails: viewDetails,
+        deleteCustomer: deleteCustomer,
+        closeModalOnClickClose: closeModalOnClickClose,
+        closeModalOnClickOutside: closeModalOnClickOutside,
     };
-}()); // <-- Moved the () inside the wrapping parenthesis
+}());
 
 $(document).ready(function () {
     customer._baseURL();
     customer.getCustomers();
+
+    // FIX: Initialize your modal event listeners on page load
+    customer.viewDetails();
+    customer.deleteCustomer();
+    customer.closeModalOnClickClose();
+    customer.closeModalOnClickOutside();
 });

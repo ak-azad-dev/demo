@@ -4,6 +4,7 @@ import com.example.demo.dto.CustomerDTO;
 import com.example.demo.model.Customer;
 import com.example.demo.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,13 @@ public class CustomerController {
         return customerService.getCustomers();
     }
 
+    @GetMapping("/details/{id}")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @ResponseBody
+    public Customer getCustomerDetails(@PathVariable Long id) {
+        return customerService.getCustomerDetailsById(id);
+    }
+
 
     @GetMapping("/new")
     public String createForm(Model model) {
@@ -56,9 +64,9 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        customerService.delete(id);
-        return "redirect:/customers";
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        customerService.deleteCustomerByCustomerId(id);
+        return ResponseEntity.ok().body("Customer with id " + id + " has been deleted");
     }
 }
